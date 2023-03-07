@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      display_name: {
+      displayName: {
         type: DataTypes.STRING,
       },
       email: {
@@ -19,7 +19,11 @@ module.exports = (sequelize, DataTypes) => {
       image: {
         type: DataTypes.STRING
       },
-    }
+    },
+    { timestamps: false,
+      tablename: 'users',
+      underscored: true,
+    },
   )
 
   User.associate = (models) => {

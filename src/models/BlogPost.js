@@ -24,7 +24,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
       }
     },
-    { timestamps: false },
+    { timestamps: false,
+      tablename: 'blog_posts',
+      underscored: true,
+    },
   );
 
   BlogPost.associate = (models) => {
