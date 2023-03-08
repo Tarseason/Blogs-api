@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       content: {
         type: DataTypes.STRING,
       },
-      user_id: {
+      userId: {
         type: DataTypes.INTEGER,
         foreignKey: true
       },
