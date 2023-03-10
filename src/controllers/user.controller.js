@@ -1,5 +1,6 @@
 const UserService = require('../services/user.service');
 const { createToken } = require('../auth/auth.token');
+const { User } = require('../models');
 
 const getAll = async (_req, res) => {
   const users = await UserService.getAll();
@@ -16,9 +17,10 @@ const getById = async (req, res) => {
 };
 
 const insert = async (req, res) => {
-  try {
-    const { displayName, email, password, image } = req.body;
-    const exist = await UserService.getByEmail(email);
+  const { displayName, email, password, image } = req.body;
+    
+    const exist = await User.findOne({ where: { email } });
+    console.log(exist);
     if (exist) {
       return res.status(409).json({ message: 'User already registered' });
     }
@@ -28,10 +30,13 @@ const insert = async (req, res) => {
     const token = createToken(insertUser);
 
     return res.status(201).json({ token });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: 'Ocorreu um erro' });
-  }
+
+  // try {
+    
+  // } catch (err) {
+  //   console.log(err);
+  //   res.status(500).json({ message: 'Ocorreu um erro' });
+  // }
 };
 
 module.exports = {
