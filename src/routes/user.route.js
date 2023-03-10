@@ -12,7 +12,7 @@ router.post('/',
 isEntries.isName,
 isEntries.isEmail,
 isEntries.isPassword,
-// isNewUser,
+isNewUser,
 userController.insert);
 
 module.exports = router;
