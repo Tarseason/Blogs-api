@@ -1,5 +1,15 @@
 const CategoryService = require('../services/categories.service');
 
+const getAll = async (req, res) => {
+  try {
+    const categories = await CategoryService.getAll();
+  return res.status(200).json(categories);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: 'Algo deu errado' });
+  }
+};
+
 const insert = async (req, res) => {
   const { name } = req.body;
   if (!name) {
@@ -11,4 +21,5 @@ const insert = async (req, res) => {
 
 module.exports = {
   insert,
+  getAll,
 };
