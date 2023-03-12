@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     'BlogPost',
     {
       id: {
+        allowNull: false,
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -14,13 +15,16 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       userId: {
+        allowNull: false,
         type: DataTypes.INTEGER,
         foreignKey: true
       },
       published: {
+        allowNull: false,
         type: DataTypes.DATE,
       },
       updated: {
+        allowNull: false,
         type: DataTypes.DATE,
       }
     },
@@ -31,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   BlogPost.associate = (models) => {
-    BlogPost.belongsTo(models.User, {foreignKey: 'user_id', as: 'user'})
+    BlogPost.belongsTo(models.User, {foreignKey: 'userId', as: 'user'})
   }
 
   return BlogPost
